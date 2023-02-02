@@ -5,9 +5,9 @@ import { Negociacao } from "../models/negociacao.js";
 export class NegociacaoController {
     
     //criando 3 variaveis privadas que não podem ser alteradas
-    private inputData;
-    private inputQuantidade;
-    private inputValor;
+    private inputData: HTMLInputElement;
+    private inputQuantidade: HTMLInputElement;
+    private inputValor: HTMLInputElement;
 
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
     constructor(){
@@ -21,25 +21,42 @@ export class NegociacaoController {
     
 
     //criando um metodo chamado adiciona
-    adiciona(){
-        // // para ver se realmente está pegando o valor correto 
-        // console.log(this.inputData);
-        // console.log(this.inputQuantidade);
-        // console.log(this.inputValor);
-
-        //importar valores da negociação do arquivo Negociacao 
-        const negociacao = new Negociacao(
-            //    esse imput esta pegando o valor da data do arquivo negociação
-            this.inputData.value,
-            //    esse imput esta pegando o valor da quantidade do arquivo negociação
-            this.inputQuantidade.value,
-            //    esse imput esta pegando o valor da valor do arquivo negociação
-            this.inputValor.value
-        );
-
+    // tipando o retorno para void
+    adiciona(): void{
+        //foi criado o metodo que cria uma negociação e estou chamando ela
+        const negociacao = this.criaNegociacao();
         //fazendo um console.log de negociação para ver se realmente está trazendo o valor esperado 
         console.log(negociacao);
+        //chamando esse metodo para depois que cria negociação limpa o formulario
+        const limparFormulario = this.limparFormulario();
 
+    }
+
+    //metodo que cria uma negociação e retorna o resulta, ficando mais organizado
+    // o metodo criado está retornando uma variavel tipada negociação
+    criaNegociacao(): Negociacao{
+        // criando uma expreção regular que pega todas ' - '
+        const exp = /-/g;
+        // (convertendo para tipo Date)criando uma contante que pega o valor a minha variavel inputDate e troca o - por , (isso pois a varialvel HTLM vem ano - mes - dia e precisa ser ano , mes , dias)
+        const date = new Date(this.inputData.value.replace(exp, ','))
+        //convertende o valor de inputQuantidade para interio
+        const  quantidade = parseInt(this.inputQuantidade.value);
+        // convertendo o parseValue para float já que valor pode ter descimais
+        const valor = parseFloat(this.inputValor.value);
+
+        //importar valores da variavel já convertidos para o formato correto para Negociacao
+        //precisa ser na ordem correta
+        return new Negociacao(date, quantidade, valor);
+    }
+
+    //criando metodo para limpar o formaulario e voltar do inicio. Tipo Void pois não retorna nada
+    limparFormulario(): void{
+        // fazendo o valor inputData receber nada
+        this.inputData.value = '';
+        this.inputQuantidade.value = '';
+        this.inputValor.value = '';
+        // para ir em um lugar apos limpar os valores
+        this.inputData.focus();
     }
 
 }

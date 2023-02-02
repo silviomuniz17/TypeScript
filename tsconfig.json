@@ -7,7 +7,9 @@
       //    para passar a versão do que vai ser vonvertido o typescript para o javaScript
       "target": "ES6",
       // esse codigo é para não gerar o arquivo js quando tiver arro no arquivo typescript
-      "noEmitOnError": true      
+      "noEmitOnError": true,
+      //para que meu codigo não adote de cara todas as variaveis como tipo any pra não dar problema mais para frente
+      "noImplicitAny": true
     },
     //  onde vai ficar os arquivos que gostaria que faça a leitura para a conversão
     "include": [

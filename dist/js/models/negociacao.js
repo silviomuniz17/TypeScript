@@ -1,12 +1,14 @@
 export class Negociacao {
     // para passar uma data quantidade e valor é passado por um contrutor
+    //data: Date, quantidade: number, valor: number (tipando o tipo de variavel é em TS o nome primeiro depois o tipo)
     constructor(data, quantidade, valor) {
         // variavel em cima recebe o valor criado no construtor
         this._data = data;
         this._quantidade = quantidade;
         this._valor = valor;
     }
-    // criar get para que possa ler os vaores da variavel para que possa ser lido
+    // criar get para que possa ler os vaores da variavel
+    // Date no final é o tipo de retorno que é uma variavel do tipo Data sempre é bom colocar para não dar problema
     get data() {
         return this._data;
     }
