@@ -1,0 +1,42 @@
+Como instalr TypeScript
+
+1) no terminal  = npm install typescript@4.2.2 --save-dev
+2)  para configurar criar na raiz new file = tsconfig.json
+
+------------------------------
+informações do arquivo tsconfig.json  
+
+//essa é a configuração minimas, não errar
+{
+  //  nessas configurações vamos compilar
+  "compilerOptions": {
+    //    onde vai salvar os arquivos js depois de criado
+    "outDir": "dist/js",
+    //    para passar a versão do que vai ser vonvertido o typescript para o javaScript
+    "target": "ES6"
+  },
+  //  onde vai ficar os arquivos que gostaria que faça a leitura para a conversão
+  "include": [
+    //    toda a pasta app e subipastas
+    "app/**/*"
+  ]
+}
+---------------------------
+
+
+3) ir no arquivo package.json e add no final da teg script = "compile": "tsc"
+assim ele vai pegar todos os arquivos em typeScript(ts) e passar para javaScript(js)
+
+// "compile": "tsc" = serve para quando eu rodar o camondo rpm rum compiler criar os arquivos JS
+// "watch": "tsc -w" = serve para ele ficar olhando sempre se foi feita alteraçção e já criar o arquivo automatico JS
+
+4)para que ele compie e testar se funciona deve colocar 
+npm rum compile (que foi o nome dado na opção 3)
+
+5)para que ele compie e testar se funciona deve colocar assim ele fica vendo tudo que foi auterado e já cria o aquivo JS 
+npm rum watch (que foi o nome dado na opção 3)
+
+6) Quando eu instalei o typeScript altomaticamente veio o modulo (concurrently) permitindo usar dois script paralelo.
+com isso o "start": "concurrently \"npm run watch\" \"npm run server\"", vai rodar esses 2 ao mesmo tempo (watch e watch)
+npm rum start
+
