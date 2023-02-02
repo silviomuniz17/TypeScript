@@ -1,0 +1,17 @@
+//essa é a configuração minimas, não errar
+{
+    //  nessas configurações vamos compilar
+    "compilerOptions": {
+      //    onde vai salvar os arquivos js depois de criado
+      "outDir": "dist/js",
+      //    para passar a versão do que vai ser vonvertido o typescript para o javaScript
+      "target": "ES6",
+      // esse codigo é para não gerar o arquivo js quando tiver arro no arquivo typescript
+      "noEmitOnError": true      
+    },
+    //  onde vai ficar os arquivos que gostaria que faça a leitura para a conversão
+    "include": [
+      //    toda a pasta app e subipastas
+      "app/**/*"
+    ]
+  }
