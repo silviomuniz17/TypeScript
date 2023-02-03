@@ -1,5 +1,6 @@
 //importando Negociacao para conseguir pegar os valores
 import { Negociacao } from "../models/negociacao.js";
+import {Negociacoes} from "../models/negociacoes.js";
 
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
@@ -8,6 +9,10 @@ export class NegociacaoController {
     private inputData: HTMLInputElement;
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
+
+    //criando uma estancia negociacoes privada que se inicia
+
+    private negociacoes: Negociacoes = new Negociacoes();
 
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
     constructor(){
@@ -25,6 +30,10 @@ export class NegociacaoController {
     adiciona(): void{
         //foi criado o metodo que cria uma negociação e estou chamando ela
         const negociacao = this.criaNegociacao();
+        // depois de criar a negociação á cima ele vai chamar o metodo para adicionar a lista de negociações
+        this.negociacoes.adiciona(negociacao);
+        // depois de add vou verificar se realmete foi salvo e vou listar a lista
+        console.log(this.negociacoes.listar());
         //fazendo um console.log de negociação para ver se realmente está trazendo o valor esperado 
         console.log(negociacao);
         //chamando esse metodo para depois que cria negociação limpa o formulario
