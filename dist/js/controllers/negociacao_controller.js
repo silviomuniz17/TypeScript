@@ -19,6 +19,8 @@ export class NegociacaoController {
     adiciona() {
         //foi criado o metodo que cria uma negociação e estou chamando ela
         const negociacao = this.criaNegociacao();
+        //fazendo um teste(estou jogando o valor de 12 em uma data para ver se está alterando)(Não esta deixando pois esta imprimindo uma copia da data, criada no get data() no negciacao.ts )
+        negociacao.data.setDate(12);
         // depois de criar a negociação á cima ele vai chamar o metodo para adicionar a lista de negociações
         this.negociacoes.adiciona(negociacao);
         // depois de add vou verificar se realmete foi salvo e vou listar a lista
