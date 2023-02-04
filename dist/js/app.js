@@ -16,6 +16,7 @@ form.addEventListener('submit', event => {
     event.preventDefault();
     // console que chamo o add no NegociacaoController
     controller.adiciona();
+    // console chamando a parte da visão das negociacoes
 });
 //------------------ 
 // ver os valores no log

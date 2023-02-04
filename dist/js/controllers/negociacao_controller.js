@@ -1,18 +1,24 @@
 //importando Negociacao para conseguir pegar os valores
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { Negociacoes_Views } from "../views/negociacoes_views.js";
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
     constructor() {
         //criando uma estancia negociacoes privada que se inicia
         this.negociacoes = new Negociacoes();
+        // estou criando um seletor para que possa pegar uma variavel no HTML
+        this.negociacoes_Views = new Negociacoes_Views('#negociacoes_views');
         //essa variavel vai pegar o documento do seletor do elemento data (id=data criado no HTML)
         this.inputData = document.querySelector('#data');
         //essa variavel vai pegar o documento do seletor do elemento quantidade (id=quantidade criado no HTML)
         this.inputQuantidade = document.querySelector('#quantidade');
         //essa variavel vai pegar o documento do seletor do elemento valor (id=valor criado no HTML)
         this.inputValor = document.querySelector('#valor');
+        //ele vai puxar a tabela assim que ela for inicializada mesmo que esteja vazia
+        //e junto já está passando os valores da negociacoes
+        this.negociacoes_Views.update(this.negociacoes);
     }
     //criando um metodo chamado adiciona
     // tipando o retorno para void

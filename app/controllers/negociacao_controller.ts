@@ -1,6 +1,7 @@
 //importando Negociacao para conseguir pegar os valores
 import { Negociacao } from "../models/negociacao.js";
 import {Negociacoes} from "../models/negociacoes.js";
+import {Negociacoes_Views} from "../views/negociacoes_views.js";
 
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
@@ -9,10 +10,11 @@ export class NegociacaoController {
     private inputData: HTMLInputElement;
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
-
     //criando uma estancia negociacoes privada que se inicia
-
     private negociacoes: Negociacoes = new Negociacoes();
+    // estou criando um seletor para que possa pegar uma variavel no HTML
+    private negociacoes_Views = new Negociacoes_Views('#negociacoes_views');
+
 
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
     constructor(){
@@ -22,6 +24,9 @@ export class NegociacaoController {
         this.inputQuantidade = document.querySelector('#quantidade');
          //essa variavel vai pegar o documento do seletor do elemento valor (id=valor criado no HTML)
         this.inputValor = document.querySelector('#valor');
+        //ele vai puxar a tabela assim que ela for inicializada mesmo que esteja vazia
+        //e junto já está passando os valores da negociacoes
+        this.negociacoes_Views.update(this.negociacoes);
     }
     
 

@@ -20,7 +20,9 @@ form.addEventListener('submit',event =>{
     //evento que não deixa fazer o refresh na pagina (como se alto completasse e parace o evendo que iniciou)
     event.preventDefault();
     // console que chamo o add no NegociacaoController
-    controller.adiciona(); 
+    controller.adiciona();
+    // console chamando a parte da visão das negociacoes
+
 });
 //------------------ 
 
