@@ -6,24 +6,38 @@ export class Negociacoes_Views {
         this.elemento = document.querySelector(seletor);
     }
     template(model) {
-        // retornando uma tabela com a classe table (HTML bootStrap)
-        return '<table class = "table table-hover table-bordered">' +
-            '<thead>' +
-            '<tr>' +
-            '<th>DATA</th>' +
-            '<th>QUANTIDADE</th>' +
-            '<th>VALOR</th>' +
-            '</tr>' +
-            '</thead>' +
-            '</table>' + //pegando os valores passado na variavel model que é da negociação e por ser string estou mapeando
-            '<tbory> ${model.lista().map( negociacao => {' +
-            'retur } ' +
-            ')}' +
-            '</tbory>';
+        return `
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${model.listar().map(negociacao => {
+            return `
+                        <tr>
+                            <td>${new Intl.DateTimeFormat()
+                .format(negociacao.data)}
+                            </td>
+                            <td>
+                                ${negociacao.quantidade}
+                            </td>
+                            <td>
+                                ${negociacao.valor}
+                            </td>
+                        </tr>
+                    `;
+        }).join('')}
+            </tbody>
+        </table>
+        `;
     }
     update(model) {
-        // esse update serve para ele pegar o elemento em HTML e jogar no formato dom para que possa ser impresso
-        //a variavel que foi enviada no construtor estou recebendo ela aqui e passando tbm pa o templete á ciam
-        this.elemento.innerHTML = this.template(model);
+        const template = this.template(model);
+        console.log(template);
+        this.elemento.innerHTML = template;
     }
 }

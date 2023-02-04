@@ -12,28 +12,43 @@ export class Negociacoes_Views {
     constructor(seletor: string) {
         // ele vai lá no Dom pegar a propriedade e jogar o valor no elemento/variavel elemento
         this.elemento = document.querySelector(seletor);
-   }
-
-    template(model: Negociacoes): string{
-        // retornando uma tabela com a classe table (HTML bootStrap)
-        return '<table class = "table table-hover table-bordered">' +
-                    '<thead>' +
-                        '<tr>' +
-                            '<th>DATA</th>' +
-                            '<th>QUANTIDADE</th>' +
-                            '<th>VALOR</th>' +
-                        '</tr>' +
-                    '</thead>' +
-                '</table>' +//pegando os valores passado na variavel model que é da negociação e por ser string estou mapeando
-                '<tbory> ${model.lista().map( negociacao => {' +
-                            'retur } ' +
-                            ')}' +
-                '</tbory>';
     }
 
-    update(model: Negociacoes): void{
-        // esse update serve para ele pegar o elemento em HTML e jogar no formato dom para que possa ser impresso
-        //a variavel que foi enviada no construtor estou recebendo ela aqui e passando tbm pa o templete á ciam
-        this.elemento.innerHTML = this.template(model);
+    template(model: Negociacoes): string {
+        return `
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${model.listar().map(negociacao => {
+            return `
+                        <tr>
+                            <td>${new Intl.DateTimeFormat()
+                .format(negociacao.data)}
+                            </td>
+                            <td>
+                                ${negociacao.quantidade}
+                            </td>
+                            <td>
+                                ${negociacao.valor}
+                            </td>
+                        </tr>
+                    `;
+        }).join('')}
+            </tbody>
+        </table>
+        `;
+    }
+
+    update(model: Negociacoes): void {
+
+        const template = this.template(model);
+        console.log(template);
+        this.elemento.innerHTML = template;
     }
 }

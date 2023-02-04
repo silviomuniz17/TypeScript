@@ -31,6 +31,8 @@ export class NegociacaoController {
         this.negociacoes.adiciona(negociacao);
         // depois de add vou verificar se realmete foi salvo e vou listar a lista
         console.log(this.negociacoes.listar());
+        //sempre que add uma nova negociação vai fazer
+        this.negociacoes_Views.update(this.negociacoes);
         //fazendo um console.log de negociação para ver se realmente está trazendo o valor esperado 
         console.log(negociacao);
         //chamando esse metodo para depois que cria negociação limpa o formulario
