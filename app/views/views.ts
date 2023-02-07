@@ -1,8 +1,10 @@
 //aqui eu criei uma tipo de variavel generica que aceita quaquer coisa T
-export class Views<T> {
+// abstract class é uma classe que não pode ser criada uma estancia dela apenas o filho erdando uma estancia dela para puxar
+// ex: negociacoes_view.ts ou mensagem_view.ts
+export abstract class Views<T> {
 
     //criando um elemento/variavel que vai receber o valor do HTLM do tipo privado e inicia vazio
-    // protected é um tipo privado porem apenas class filhas consegue ter acesso
+    // protected é um tipo privado porem apenas class pai e filhas consegue ter acesso
     protected elemento: HTMLInputElement;
 
 //criando um contrutor para que possa pegar o id 'negociacoes_views' no indexs.HTML
@@ -16,9 +18,8 @@ export class Views<T> {
         this.elemento.innerHTML = template;
     }
 
-    template(model: T): string{
-        throw Error ('Classe filha precisa implementar o metodo templaes')
-    }
+    //quando ela é abstract força a filha no caso mensagem_view.ts a colocar um metodo lá assim o codigo fica menos sujeito á erros
+    abstract template(model: T): string
 
 }
 
