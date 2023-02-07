@@ -2,6 +2,7 @@
 import { Negociacao } from "../models/negociacao.js";
 import {Negociacoes} from "../models/negociacoes.js";
 import {Negociacoes_Views} from "../views/negociacoes_views.js";
+import {Mensagem_View} from "../views/mensagem_view.js";
 
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
@@ -13,7 +14,9 @@ export class NegociacaoController {
     //criando uma estancia negociacoes privada que se inicia
     private negociacoes: Negociacoes = new Negociacoes();
     // estou criando um seletor para que possa pegar uma variavel no HTML
-    private negociacoes_Views = new Negociacoes_Views('#negociacoes_views');
+    private negociacoes_Views = new Negociacoes_Views('#negociacoesViews');
+    //chamando a mensagem_view para que possa imprimir uma msg (# é no nome do ID que está no HTML)
+    private mensagem_View = new Mensagem_View('#mensagemView');
 
 
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
@@ -43,6 +46,8 @@ export class NegociacaoController {
         console.log(this.negociacoes.listar());
         //sempre que add uma nova negociação vai fazer
         this.negociacoes_Views.update(this.negociacoes);
+        //depois de fazer um update das informações vai chamar a class mensagem
+        this.mensagem_View.update('Negociação adicionada com sucesso');
         //fazendo um console.log de negociação para ver se realmente está trazendo o valor esperado 
         console.log(negociacao);
         //chamando esse metodo para depois que cria negociação limpa o formulario

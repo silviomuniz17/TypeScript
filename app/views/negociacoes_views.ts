@@ -2,17 +2,11 @@
 
 // criando uma classe de negociaçoes
 import {Negociacoes} from "../models/negociacoes.js";
+import {Views} from "./views.js";
 
-export class Negociacoes_Views {
-
-    //criando um elemento/variavel que vai receber o valor do HTLM do tipo privado e inicia vazio
-    private elemento: HTMLInputElement;
-
-    //criando um contrutor para que possa pegar o id 'negociacoes_views' no indexs.HTML
-    constructor(seletor: string) {
-        // ele vai lá no Dom pegar a propriedade e jogar o valor no elemento/variavel elemento
-        this.elemento = document.querySelector(seletor);
-    }
+//extends que dizer que estou chamando a classe view para usar um elemento que existe lá
+//estou recebendo de uma variavel generica T da class vew e passando para Negociacoes
+export class Negociacoes_Views extends Views <Negociacoes>{
 
     template(model: Negociacoes): string {
         return `
@@ -43,12 +37,5 @@ export class Negociacoes_Views {
             </tbody>
         </table>
         `;
-    }
-
-    update(model: Negociacoes): void {
-
-        const template = this.template(model);
-        console.log(template);
-        this.elemento.innerHTML = template;
     }
 }
