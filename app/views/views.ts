@@ -18,7 +18,8 @@ export abstract class Views<T> {
         this.elemento.innerHTML = template;
     }
 
-    //quando ela é abstract força a filha no caso mensagem_view.ts a colocar um metodo lá assim o codigo fica menos sujeito á erros
+    //quando ela é abstract força a filha no caso mensagem_view.ts a colocar um metodo lá assim o codigo fica menos sujeito á
+    // erros
     abstract template(model: T): string
 
 }
