@@ -15,7 +15,7 @@ export class Negociacoes{
 
     //criando um metodo que adiciona valor ao array
     // o array criado recebe os valores da variavel
-    adiciona(negociacao: Negociacao){
+    public adiciona(negociacao: Negociacao){
         //essa negociação envia uma negociação
         this.negociacoes.push(negociacao);
     }
@@ -23,7 +23,7 @@ export class Negociacoes{
     // criando uma lista para imprimir os valores salvos
     // ReadonlyArray esse é identico ao Arrey porem não existe nenhuma forma de alterar os dados dela
     // " ReadonlyArray<Negociacao> = [] " ou " readonly Negociacao [] " é a mesma coisa
-    listar(): ReadonlyArray<Negociacao> {
+    public listar(): ReadonlyArray<Negociacao> {
         return this.negociacoes;
     }
 }

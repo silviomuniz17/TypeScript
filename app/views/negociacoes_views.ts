@@ -8,7 +8,8 @@ import {Views} from "./views.js";
 //estou recebendo de uma variavel generica T da class vew e passando para Negociacoes
 export class Negociacoes_Views extends Views <Negociacoes>{
 
-    template(model: Negociacoes): string {
+    // protected quer dizer que apenas o pai e filho vai ter acesos assim no principal tbm não vai aparecer apenas o updat
+    protected template(model: Negociacoes): string {
         return `
         <table class="table table-hover table-bordered">
             <thead>
@@ -22,8 +23,7 @@ export class Negociacoes_Views extends Views <Negociacoes>{
                 ${model.listar().map(negociacao => {
             return `
                         <tr>
-                            <td>${new Intl.DateTimeFormat()
-                .format(negociacao.data)}
+                            <td>${this.formatar(negociacao.data)} 
                             </td>
                             <td>
                                 ${negociacao.quantidade}
@@ -37,5 +37,12 @@ export class Negociacoes_Views extends Views <Negociacoes>{
             </tbody>
         </table>
         `;
+    }
+
+    //criando um metodo privado chamado formatar para que eu possa chamar ele logo á cima em template que apenas aqui pode acessar
+    // assim fica mais organizado
+    private formatar(data: Date):string{
+        return new Intl.DateTimeFormat()
+            .format(data)
     }
 }

@@ -13,14 +13,14 @@ export abstract class Views<T> {
         this.elemento = document.querySelector(seletor);
     }
 
-    update(model: T): void{
+    public update(model: T): void{
         const template = this.template(model);
         this.elemento.innerHTML = template;
     }
 
-    //quando ela é abstract força a filha no caso mensagem_view.ts a colocar um metodo lá assim o codigo fica menos sujeito á
-    // erros
-    abstract template(model: T): string
+    //quando ela é abstract força a filha no caso mensagem_view.ts a colocar um metodo lá assim o codigo fica menos sujeito á erros
+    // protected quer dizer que apenas o pai e filho vai ter acesos assim no principal tbm não vai aparecer apenas o updat
+    protected abstract template(model: T): string
 
 }
 
