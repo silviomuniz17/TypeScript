@@ -26,4 +26,18 @@ export class Negociacao {
     get volume() {
         return this._quantidade * this.valor;
     }
+    // crieu um metodo para já receber uma string assim não precisa converter. ela é do tipo static podendo tem acesso á ela sempre. ela é do tipo negociacao
+    static criaDe(dataString, quantidadeString, valorString) {
+        // criando uma expreção regular que pega todas ' - '
+        const exp = /-/g;
+        // (convertendo para tipo Date)criando uma contante que pega o valor a minha variavel inputDate e troca o - por , (isso pois a varialvel HTLM vem ano - mes - dia e precisa ser ano , mes , dias)
+        const date = new Date(dataString.replace(exp, ','));
+        //convertende o valor de inputQuantidade para interio
+        const quantidade = parseInt(quantidadeString);
+        // convertendo o parseValue para float já que valor pode ter descimais
+        const valor = parseFloat(valorString);
+        //importar valores da variavel já convertidos para o formato correto para Negociacao
+        //precisa ser na ordem correta
+        return new Negociacao(date, quantidade, valor);
+    }
 }

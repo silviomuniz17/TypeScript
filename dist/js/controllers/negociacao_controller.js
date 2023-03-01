@@ -11,7 +11,7 @@ export class NegociacaoController {
         //criando uma estancia negociacoes privada que se inicia
         this.negociacoes = new Negociacoes();
         // estou criando um seletor para que possa pegar uma variavel no HTML
-        this.negociacoes_Views = new Negociacoes_Views('#negociacoesViews');
+        this.negociacoes_Views = new Negociacoes_Views('#negociacoesViews', true);
         //chamando a mensagem_view para que possa imprimir uma msg (# é no nome do ID que está no HTML)
         this.mensagem_View = new Mensagem_View('#mensagemView');
         //essa variavel vai pegar o documento do seletor do elemento data (id=data criado no HTML)
@@ -27,8 +27,8 @@ export class NegociacaoController {
     //criando um metodo chamado adiciona
     // tipando o retorno para void
     adiciona() {
-        //foi criado o metodo que cria uma negociação e estou chamando ela
-        const negociacao = this.criaNegociacao();
+        //chamar um metodo estatico que esteja dentro de negociacao.ts
+        const negociacao = Negociacao.criaDe(this.inputData.value, this.inputQuantidade.value, this.inputValor.value);
         //fazendo um teste(estou jogando o valor de 12 em uma data para ver se está alterando)(Não esta deixando pois esta imprimindo uma copia da data, criada no get data() no negciacao.ts )
         negociacao.data.setDate(12);
         //======================================================================================================================
@@ -70,23 +70,24 @@ export class NegociacaoController {
     //criando um metodo para saber se é dia util
     //o dia da semana puxa na pasta enums podendo usar em qualquer lugar 
     ehDiaUtil(data) {
-        return data.getDay() > Dias_Da_Semana.DOMINGO && data.getDay() < Dias_Da_Semana.SABADO;
+        return data.getDay() > Dias_Da_Semana.DOMINGO
+            && data.getDay() < Dias_Da_Semana.SABADO;
     }
     //metodo que cria uma negociação e retorna o resulta, ficando mais organizado
     // o metodo criado está retornando uma variavel tipada negociação
-    criaNegociacao() {
-        // criando uma expreção regular que pega todas ' - '
-        const exp = /-/g;
-        // (convertendo para tipo Date)criando uma contante que pega o valor a minha variavel inputDate e troca o - por , (isso pois a varialvel HTLM vem ano - mes - dia e precisa ser ano , mes , dias)
-        const date = new Date(this.inputData.value.replace(exp, ','));
-        //convertende o valor de inputQuantidade para interio
-        const quantidade = parseInt(this.inputQuantidade.value);
-        // convertendo o parseValue para float já que valor pode ter descimais
-        const valor = parseFloat(this.inputValor.value);
-        //importar valores da variavel já convertidos para o formato correto para Negociacao
-        //precisa ser na ordem correta
-        return new Negociacao(date, quantidade, valor);
-    }
+    // private criaNegociacao(): Negociacao {
+    //     // criando uma expreção regular que pega todas ' - '
+    //     const exp = /-/g;
+    //     // (convertendo para tipo Date)criando uma contante que pega o valor a minha variavel inputDate e troca o - por , (isso pois a varialvel HTLM vem ano - mes - dia e precisa ser ano , mes , dias)
+    //     const date = new Date(this.inputData.value.replace(exp, ','))
+    //     //convertende o valor de inputQuantidade para interio
+    //     const quantidade = parseInt(this.inputQuantidade.value);
+    //     // convertendo o parseValue para float já que valor pode ter descimais
+    //     const valor = parseFloat(this.inputValor.value);
+    //     //importar valores da variavel já convertidos para o formato correto para Negociacao
+    //     //precisa ser na ordem correta
+    //     return new Negociacao(date, quantidade, valor);
+    // }
     //criando metodo para limpar o formaulario e voltar do inicio. Tipo Void pois não retorna nada
     limparFormulario() {
         // fazendo o valor inputData receber nada
