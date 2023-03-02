@@ -9,7 +9,11 @@
       // esse codigo é para não gerar o arquivo js quando tiver arro no arquivo typescript
       "noEmitOnError": true,
       //para que meu codigo não adote de cara todas as variaveis como tipo any pra não dar problema mais para frente
-      "noImplicitAny": true
+      "noImplicitAny": true,
+      //esse codigo é para quando eu inserir um comentario não converter tbm para .JS assim meu arquivo fica menor e mais leve
+      "removeComments": true,
+      //essa configuração é para deixar o meu codigo mais seguro assim ele não vai permitir que eu atribua um valor nulo para que no futuro de erro assim trataria p problema antes
+      "strictNullChecks": true
     },
     //  onde vai ficar os arquivos que gostaria que faça a leitura para a conversão
     "include": [

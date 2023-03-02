@@ -8,7 +8,7 @@ import {Dias_Da_Semana} from "../enums/dias_da_semana.js";
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
 
-    //criando 3 variaveis privadas que não podem ser alteradas
+    //criando 3 variaveis privadas que não podem ser alteradas do tipo HTML e Null
     private inputData: HTMLInputElement;
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
@@ -23,11 +23,14 @@ export class NegociacaoController {
     //criando um contrutor que vai receber as variaveis que forem passadas no HTML
     constructor() {
         //essa variavel vai pegar o documento do seletor do elemento data (id=data criado no HTML)
-        this.inputData = document.querySelector('#data');
+        // (as HTMLInputElement) estou garantido e falando para meu compilador que está retornando uma HTML assim não vai dar erro (está dando erro pois estou tendo que tratar tudo que for nulo oir conta do TSCONFIG>JSON)
+        this.inputData = document.querySelector('#data') as HTMLInputElement;
         //essa variavel vai pegar o documento do seletor do elemento quantidade (id=quantidade criado no HTML)
-        this.inputQuantidade = document.querySelector('#quantidade');
+        // (as HTMLInputElement) estou garantido e falando para meu compilador que está retornando uma HTML assim não vai dar erro (está dando erro pois estou tendo que tratar tudo que for nulo oir conta do TSCONFIG>JSON)
+        this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
         //essa variavel vai pegar o documento do seletor do elemento valor (id=valor criado no HTML)
-        this.inputValor = document.querySelector('#valor');
+        // (as HTMLInputElement) estou garantido e falando para meu compilador que está retornando uma HTML assim não vai dar erro (está dando erro pois estou tendo que tratar tudo que for nulo oir conta do TSCONFIG>JSON)
+        this.inputValor = document.querySelector('#valor') as HTMLInputElement;
         //ele vai puxar a tabela assim que ela for inicializada mesmo que esteja vazia
         //e junto já está passando os valores da negociacoes
         this.negociacoes_Views.update(this.negociacoes);

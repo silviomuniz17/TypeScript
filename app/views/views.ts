@@ -14,7 +14,12 @@ export abstract class Views<T> {
     constructor(seletor: string, escapar?: boolean) {
         // ele vai lá no Dom pegar a propriedade e jogar o valor no elemento/variavel elemento
         //fazendo essa logica para que o valor de escapar continue falso
-        this.elemento = document.querySelector(seletor);
+        const elemento = document.querySelector(seletor);
+        if (elemento){
+            this.elemento = elemento as HTMLInputElement;
+        }else {
+            throw  Error (`Seletor ${seletor} não existe no DOM, Verifique`);
+        }
         if(escapar){
             this.escapar = escapar;
         }

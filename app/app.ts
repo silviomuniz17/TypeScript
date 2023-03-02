@@ -15,15 +15,22 @@ const negociacao = new Negociacao(new Date(), 20, 100);
 const controller = new NegociacaoController();
 //pegamos o Form do index.html 
 const form = document.querySelector('.form');
-//todas as vezer que subimeter o form (iniciar)  ele vai chamar o elemento adiciona
-form.addEventListener('submit',event =>{
-    //evento que não deixa fazer o refresh na pagina (como se alto completasse e parace o evendo que iniciou)
-    event.preventDefault();
-    // console que chamo o add no NegociacaoController
-    controller.adiciona();
-    // console chamando a parte da visão das negociacoes
 
-});
+//esse if é para tratar se o valor é nullo ou não, já que coloquei nas configurações que é obrigado a ser tratado
+if (form){
+    form.addEventListener('submit',event =>{
+        //evento que não deixa fazer o refresh na pagina (como se alto completasse e parace o evendo que iniciou)
+        event.preventDefault();
+        // console que chamo o add no NegociacaoController
+        controller.adiciona();
+        // console chamando a parte da visão das negociacoes
+    });
+}else {
+    throw Error(`Não foi possivel iniciar a aplicação. Verificar se esse form existe`)
+}
+
+//todas as vezer que subimeter o form (iniciar)  ele vai chamar o elemento adiciona
+
 //------------------ 
 
 // ver os valores no log
