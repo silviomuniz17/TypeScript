@@ -4,6 +4,7 @@ import {Negociacoes} from "../models/negociacoes.js";
 import {Negociacoes_Views} from "../views/negociacoes_views.js";
 import {Mensagem_View} from "../views/mensagem_view.js";
 import {Dias_Da_Semana} from "../enums/dias_da_semana.js";
+import {logarTempoDeExecucao} from "../decorators/logar-tempo-de-execucao.js";
 
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
@@ -37,7 +38,8 @@ export class NegociacaoController {
 
     }
 
-
+    // @logarTempoDeExecucao() é uma função para saber o tempo que demora para executar esse adiciona
+    @logarTempoDeExecucao()
     //criando um metodo chamado adiciona
     // tipando o retorno para void
     public adiciona(): void {

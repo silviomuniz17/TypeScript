@@ -3,7 +3,7 @@
     //  nessas configurações vamos compilar
     "compilerOptions": {
       //    onde vai salvar os arquivos js depois de criado
-      "outDir": "dist/js",
+      "outDir": "app/dist/js",
       //    para passar a versão do que vai ser vonvertido o typescript para o javaScript
       "target": "ES6",
       // esse codigo é para não gerar o arquivo js quando tiver arro no arquivo typescript
@@ -13,11 +13,13 @@
       //esse codigo é para quando eu inserir um comentario não converter tbm para .JS assim meu arquivo fica menor e mais leve
       "removeComments": true,
       //essa configuração é para deixar o meu codigo mais seguro assim ele não vai permitir que eu atribua um valor nulo para que no futuro de erro assim trataria p problema antes
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      // avisando o typeScript que vou utilizar o decorators
+      "experimentalDecorators": true,
     },
     //  onde vai ficar os arquivos que gostaria que faça a leitura para a conversão
     "include": [
       //    toda a pasta app e subipastas
-      "app/**/*"
+      "app/src/**/*"
     ]
   }

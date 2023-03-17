@@ -1,6 +1,8 @@
 //aqui eu criei uma tipo de variavel generica que aceita quaquer coisa T
 // abstract class é uma classe que não pode ser criada uma estancia dela apenas o filho erdando uma estancia dela para puxar
 // ex: negociacoes_view.ts ou mensagem_view.ts
+import {logarTempoDeExecucao} from "../decorators/logar-tempo-de-execucao.js";
+
 export abstract class Views<T> {
 
     //criando um elemento/variavel que vai receber o valor do HTLM do tipo privado e inicia vazio
@@ -24,6 +26,9 @@ export abstract class Views<T> {
             this.escapar = escapar;
         }
     }
+
+    // @logarTempoDeExecucao() é uma função para saber o tempo que demora para executar esse update
+    @logarTempoDeExecucao()
     public update(model: T): void{
         let template = this.template(model);
         //esse escapar é uma forma de seguraça para não adicionar informação no meu HTML
