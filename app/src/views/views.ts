@@ -2,6 +2,7 @@
 // abstract class é uma classe que não pode ser criada uma estancia dela apenas o filho erdando uma estancia dela para puxar
 // ex: negociacoes_view.ts ou mensagem_view.ts
 import {logarTempoDeExecucao} from "../decorators/logar-tempo-de-execucao.js";
+import {inspect} from "../decorators/inspect.js";
 
 export abstract class Views<T> {
 
@@ -12,7 +13,7 @@ export abstract class Views<T> {
     private escapar:boolean = false;
 
     //criando um contrutor para que possa pegar o id 'negociacoes_views' no indexs.HTML
-    //chamando a  variavel de segurança para que não possa ser alterada o HTML (quando coloco esse ? quer dizer que é opcional usar ou não )
+    //chamando a variavel de segurança para que não possa ser alterada o HTML (quando coloco esse ? quer dizer que é opcional usar ou não )
     constructor(seletor: string, escapar?: boolean) {
         // ele vai lá no Dom pegar a propriedade e jogar o valor no elemento/variavel elemento
         //fazendo essa logica para que o valor de escapar continue falso
@@ -26,9 +27,10 @@ export abstract class Views<T> {
             this.escapar = escapar;
         }
     }
-
     // @logarTempoDeExecucao() é uma função para saber o tempo que demora para executar esse update
-    @logarTempoDeExecucao()
+    @logarTempoDeExecucao(true)
+    // @inspect() é uma função para saber o nome, parametro e retorno
+    @inspect()
     public update(model: T): void{
         let template = this.template(model);
         //esse escapar é uma forma de seguraça para não adicionar informação no meu HTML
