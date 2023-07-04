@@ -5,18 +5,22 @@ import {Negociacoes_Views} from "../views/negociacoes_views.js";
 import {Mensagem_View} from "../views/mensagem_view.js";
 import {Dias_Da_Semana} from "../enums/dias_da_semana.js";
 import {logarTempoDeExecucao} from "../decorators/logar-tempo-de-execucao.js";
+import {inspect} from "../decorators/inspect.js";
 
 //exportando uma classe NegociacaoController
 export class NegociacaoController {
 
     //criando 3 variaveis privadas que não podem ser alteradas do tipo HTML e Null
+    // @DonInject('#data')
     private inputData: HTMLInputElement;
+    // @DonInject('#quantidade')
     private inputQuantidade: HTMLInputElement;
+    // @DonInject('#valor')
     private inputValor: HTMLInputElement;
     //criando uma estancia negociacoes privada que se inicia
     private negociacoes: Negociacoes = new Negociacoes();
     // estou criando um seletor para que possa pegar uma variavel no HTML
-    private negociacoes_Views = new Negociacoes_Views('#negociacoesViews', true);
+    private negociacoes_Views = new Negociacoes_Views('#negociacoesViews');
     //chamando a mensagem_view para que possa imprimir uma msg (# é no nome do ID que está no HTML)
     private mensagem_View = new Mensagem_View('#mensagemView');
 
@@ -37,7 +41,10 @@ export class NegociacaoController {
         this.negociacoes_Views.update(this.negociacoes);
 
     }
-
+    // @logarTempoDeExecucao() é uma função para saber o tempo que demora para executar esse update
+    @logarTempoDeExecucao(true)
+    // @inspect() é uma função para saber o nome, parametro e retorno
+    @inspect()
     // @logarTempoDeExecucao() é uma função para saber o tempo que demora para executar esse adiciona
     @logarTempoDeExecucao()
     //criando um metodo chamado adiciona

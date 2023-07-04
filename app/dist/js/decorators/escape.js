@@ -3,6 +3,8 @@ export function escape() {
         const metodoOriginhal = descriptor.value;
         descriptor.value = function (...args) {
             let retorno = metodoOriginhal.apply(this, args);
+            if (typeof retorno === 'string') {
+            }
             return retorno;
         };
         return descriptor;
