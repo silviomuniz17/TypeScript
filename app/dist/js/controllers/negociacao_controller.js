@@ -11,14 +11,12 @@ import { Mensagem_View } from "../views/mensagem_view.js";
 import { Dias_Da_Semana } from "../enums/dias_da_semana.js";
 import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { inspect } from "../decorators/inspect.js";
+import { domInjector } from "../decorators/dom-injector";
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes();
         this.negociacoes_Views = new Negociacoes_Views('#negociacoesViews');
         this.mensagem_View = new Mensagem_View('#mensagemView');
-        this.inputData = document.querySelector('#data');
-        this.inputQuantidade = document.querySelector('#quantidade');
-        this.inputValor = document.querySelector('#valor');
         this.negociacoes_Views.update(this.negociacoes);
     }
     adiciona() {
@@ -49,6 +47,15 @@ export class NegociacaoController {
         this.mensagem_View.update('Negociação adicionada com sucesso');
     }
 }
+__decorate([
+    domInjector('#data')
+], NegociacaoController.prototype, "inputData", void 0);
+__decorate([
+    domInjector('#quantidade')
+], NegociacaoController.prototype, "inputQuantidade", void 0);
+__decorate([
+    domInjector('#valor')
+], NegociacaoController.prototype, "inputValor", void 0);
 __decorate([
     logarTempoDeExecucao(true),
     inspect(),
