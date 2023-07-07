@@ -6,7 +6,7 @@ import {Mensagem_View} from "../views/mensagem_view.js";
 import {Dias_Da_Semana} from "../enums/dias_da_semana.js";
 import {logarTempoDeExecucao} from "../decorators/logar-tempo-de-execucao.js";
 import {inspect} from "../decorators/inspect.js";
-import {domInjector} from "../decorators/dom-injector";
+import {domInjector} from "../decorators/dom-injector.js";
 
 
 //exportando uma classe NegociacaoController
